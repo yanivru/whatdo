@@ -1,0 +1,51 @@
+@page "/"
+
+<PageTitle>WhatDo — Copilot CLI Status</PageTitle>
+
+<h1>Copilot CLI Status</h1>
+
+<div class="mb-3">
+    <button id="push-toggle" class="btn btn-outline-primary btn-sm" type="button" hidden>Enable notifications</button>
+    <span id="push-status" class="ms-2 text-muted"></span>
+</div>
+
+<div id="status-container">
+    <p><em>Loading...</em></p>
+</div>
+
+<script>
+    async function refreshStatus() {
+        const container = document.getElementById('status-container');
+        try {
+            const response = await fetch('/api/status', { cache: 'no-store' });
+            const instances = await response.json();
+
+            if (instances.length === 0) {
+                container.innerHTML = '<p><em>No active Copilot CLI instances reporting.</em></p>';
+                return;
+            }
+
+            const rows = instances.map(i => `
+                <tr>
+                    <td>${i.name}</td>
+                    <td>${i.status}</td>
+                    <td>${i.lastEvent}</td>
+                    <td>${i.lastSeenUtc}</td>
+                </tr>`).join('');
+
+            container.innerHTML = `
+                <table class="table">
+                    <thead>
+                        <tr><th>Name</th><th>Status</th><th>Last Event</th><th>Last Seen (UTC)</th></tr>
+                    </thead>
+                    <tbody>${rows}</tbody>
+                </table>`;
+        } catch {
+            container.innerHTML = '<p><em>Unable to reach the status endpoint.</em></p>';
+        }
+    }
+
+    refreshStatus();
+    setInterval(refreshStatus, 2000);
+</script>
+

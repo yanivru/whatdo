@@ -1,0 +1,54 @@
+{
+  "version": 1,
+  "hooks": {
+    "SessionStart": [
+      {
+        "type": "http",
+        "url": "http://localhost:PORT/api/status-event",
+        "headers": { "X-Status-Secret": "dev-secret-change-me" }
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "type": "http",
+        "url": "http://localhost:PORT/api/status-event",
+        "headers": { "X-Status-Secret": "dev-secret-change-me" }
+      }
+    ],
+    "PostToolUse": [
+      {
+        "type": "http",
+        "url": "http://localhost:PORT/api/status-event",
+        "headers": { "X-Status-Secret": "dev-secret-change-me" }
+      }
+    ],
+    "PostToolUseFailure": [
+      {
+        "type": "http",
+        "url": "http://localhost:PORT/api/status-event",
+        "headers": { "X-Status-Secret": "dev-secret-change-me" }
+      }
+    ],
+    "Notification": [
+      {
+        "type": "http",
+        "url": "http://localhost:PORT/api/status-event",
+        "headers": { "X-Status-Secret": "dev-secret-change-me" }
+      }
+    ],
+    "Stop": [
+      {
+        "type": "http",
+        "url": "http://localhost:PORT/api/status-event",
+        "headers": { "X-Status-Secret": "dev-secret-change-me" }
+      }
+    ],
+    "SessionEnd": [
+      {
+        "type": "http",
+        "url": "http://localhost:PORT/api/status-event",
+        "headers": { "X-Status-Secret": "dev-secret-change-me" }
+      }
+    ]
+  }
+}

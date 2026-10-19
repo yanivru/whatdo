@@ -1,0 +1,6 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/WhatDo.StatusService.Tests/WhatDo.StatusService.Tests.csproj" />
+    <Project Path="src/WhatDo.StatusService/WhatDo.StatusService.csproj" />
+  </Folder>
+</Solution>
